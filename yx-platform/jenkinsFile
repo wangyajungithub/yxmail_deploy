@@ -1,0 +1,60 @@
+pipeline {
+	// 所有机器
+    agent any
+	// 工具 需要现在全局工具里面配置
+    tools {
+        maven 'M3'
+    }
+
+
+	environment {
+		PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
+	}
+
+	parameters {
+		choice(
+			choices: 'dev\nprod',
+			description: '请选择你要部署的环境',
+			name: 'deploy_env'
+		)
+		string (name: 'branch', defaultValue: 'master', description: '需要部署的分支名称')
+		string (name: 'fileName', defaultValue: 'yx-platform-0.0.1-SNAPSHOT.jar', description: '部署jar名称')
+	}
+
+
+    stages {
+        stage('Pull deploy code') {
+            steps {
+				sh 'git config --global http.sslVerify false'
+				dir ("${env.WORKSPACE}"){
+					git branch: '$branch', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/YxMall/yx-platform.git'
+				}
+            }
+        }
+
+		stage('build deploy code') {
+            steps {
+                sh 'mvn --version'
+				sh 'mvn clean install -Dmaven.test.skip=true -Ptest'
+            }
+        }
+
+ 		stage('Pull deploy ansible script') {
+            steps {
+				sh 'git config --global http.sslVerify false'
+				dir (path:"../yxmall_deploy"){
+					git branch: 'master', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/YxMall/yxmall_deploy.git'
+				}
+            }
+        }
+
+		stage('ansible deploy service') {
+            steps {
+				dir (path:"../yxmall_deploy/yx-platform/playbooks"){
+					 sh 'ansible --version'
+				     sh 'ansible-playbook -i   inventory/$deploy_env ./deploy.yml  -e fileName=$fileName'
+				}
+			  }
+        }
+    }
+}

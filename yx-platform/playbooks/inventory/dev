@@ -1,0 +1,10 @@
+[yx-platform]
+test.example.com
+
+[yx-platform:vars]
+server_name=test.example.com
+port=80
+user=root
+worker_processes=2
+max_open_file=30000
+root=/www
