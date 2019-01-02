@@ -21,7 +21,6 @@ pipeline {
 		string (name: 'fileName', defaultValue: 'yx-platform-0.0.1-SNAPSHOT.jar', description: '部署jar名称')
 	}
 
-
     stages {
         stage('Pull deploy code') {
             steps {
