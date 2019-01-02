@@ -15,7 +15,7 @@ pipeline {
 		choice(
 			choices: 'dev\nprod',
 			description: '请选择你要部署的环境',
-			name: 'deploy_env'
+			name: 'dev_env'
 		)
 		string (name: 'branch', defaultValue: 'master', description: '需要部署的分支名称')
 		string (name: 'fileName', defaultValue: 'yx-platform-0.0.1-SNAPSHOT.jar', description: '部署jar名称')
@@ -43,7 +43,7 @@ pipeline {
             steps {
 				sh 'git config --global http.sslVerify false'
 				dir (path:"../yxmall_deploy"){
-					git branch: 'master', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/YxMall/yxmall_deploy.git'
+					git branch: 'master', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/wangyajungithub/test.git'
 				}
             }
         }
