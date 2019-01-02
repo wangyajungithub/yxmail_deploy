@@ -27,7 +27,7 @@ pipeline {
             steps {
 				sh 'git config --global http.sslVerify false'
 				dir ("${env.WORKSPACE}"){
-					git branch: '$branch', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
+					git branch: '$branch', credentialsId: '69d456d5-9dc9-475a-b5e5-325acd530197', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
 				}
             }
         }
@@ -44,7 +44,7 @@ pipeline {
             steps {
 				sh 'git config --global http.sslVerify false'
 				dir (path:"../yxmall_deploy"){
-					git branch: 'master', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
+					git branch: 'master', credentialsId: '69d456d5-9dc9-475a-b5e5-325acd530197', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
 				}
             }
         }
