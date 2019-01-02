@@ -3,7 +3,7 @@ pipeline {
     agent any
 	// 工具 需要现在全局工具里面配置
     tools {
-        maven 'M3'
+        maven 'maven-3.3.9'
     }
 
 
@@ -27,7 +27,7 @@ pipeline {
             steps {
 				sh 'git config --global http.sslVerify false'
 				dir ("${env.WORKSPACE}"){
-					git branch: '$branch', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/YxMall/yx-platform.git'
+					git branch: '$branch', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
 				}
             }
         }
@@ -44,7 +44,7 @@ pipeline {
             steps {
 				sh 'git config --global http.sslVerify false'
 				dir (path:"../yxmall_deploy"){
-					git branch: 'master', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/wangyajungithub/test.git'
+					git branch: 'master', credentialsId: '390e7801-113b-4015-ac8c-1f56c1de5b76', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
 				}
             }
         }
