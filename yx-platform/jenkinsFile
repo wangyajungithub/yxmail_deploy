@@ -18,7 +18,7 @@ pipeline {
 			name: 'dev_env'
 		)
 		string (name: 'branch', defaultValue: 'master', description: '需要部署的分支名称')
-		string (name: 'fileName', defaultValue: 'yx-platform-0.0.1-SNAPSHOT.jar', description: '部署jar名称')
+		string (name: 'fileName', defaultValue: 'demo-0.0.1-SNAPSHOT.jar', description: '部署jar名称')
 	}
 
 
