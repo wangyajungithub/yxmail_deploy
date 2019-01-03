@@ -1,6 +1,6 @@
  # 获取本地打包好的文件名
   - name: get local file name
-    local_action: shell ls {{ pwd }}/target/*.jar
+    local_action: shell ls {{ pwd }}/*.jar
     register: file_name
     tags: test
 
