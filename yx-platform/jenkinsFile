@@ -32,14 +32,6 @@ pipeline {
             }
         }
 
-
-		stage('build deploy code') {
-            steps {
-                sh 'mvn --version'
-				sh 'mvn clean install -Dmaven.test.skip=true -Ptest'
-            }
-        }
-
  		stage('Pull deploy ansible script') {
             steps {
 				sh 'git config --global http.sslVerify false'
