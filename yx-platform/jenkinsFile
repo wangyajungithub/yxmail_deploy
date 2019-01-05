@@ -27,8 +27,15 @@ pipeline {
             steps {
 				sh 'git config --global http.sslVerify false'
 				dir ("${env.WORKSPACE}"){
-					git branch: '$branch', credentialsId: '69d456d5-9dc9-475a-b5e5-325acd530197', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
+					git branch: '$branch', credentialsId: '69d456d5-9dc9-475a-b5e5-325acd530197', url: 'https://github.com/wangyajungithub/demo.git'
 				}
+            }
+        }
+
+		stage('build deploy code') {
+            steps {
+                sh 'mvn --version'
+				sh 'mvn clean install -Dmaven.test.skip=true -Ptest'
             }
         }
 
