@@ -50,9 +50,9 @@ pipeline {
 
 		stage('ansible deploy service') {
             steps {
+                sh 'source /root/.py3-a2.5-env/bin/activate'
+                sh 'source /root/.py3-a2.5-env/ansible/hacking/env-setup -q'
 				dir (path:"../yxmall_deploy/yx-platform/playbooks"){
-				     sh 'source /root/.py3-a2.5-env/bin/activate'
-				     sh 'source /root/.py3-a2.5-env/ansible/hacking/env-setup -q'
 					 sh 'ansible --version'
 				     sh 'ansible-playbook -i inventory/$deploy_env ./deploy.yml  -e fileName=$fileName'
 				}
