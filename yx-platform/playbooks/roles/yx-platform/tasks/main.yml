@@ -46,5 +46,5 @@
 
 # 启动新的jar包
   - name: start {{ fileName }}
-    shell: "nohup java -jar /home/{{ fileName }} &  > out.log &"
+    shell: "nohup java -jar /home/{{ fileName }} >> out.log"
     tags: start
