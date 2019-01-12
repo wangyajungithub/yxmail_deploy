@@ -10,7 +10,7 @@ pipeline {
 		choice(
 			choices: 'dev\nprod',
 			description: '请选择你要部署的环境',
-			name: 'deploy_env'
+			name: 'dev_env'
 		)
 		string (name: 'branch', defaultValue: 'master', description: '需要部署的分支名称')
 	}
