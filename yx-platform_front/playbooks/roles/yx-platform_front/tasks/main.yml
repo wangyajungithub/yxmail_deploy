@@ -1,0 +1,3 @@
+- name: Copy html to remote
+  copy: 'remote_src=no src={{ pwd }}/dist/  dest=/usr/share/ mode=0755'
+

@@ -1,0 +1,7 @@
+- hosts: yx-platform
+  gather_facts: true
+  remote_user: root
+  vars:
+      pwd: /root/.jenkins/workspace/yx-platform_front
+  roles:
+    - yx-platform_front

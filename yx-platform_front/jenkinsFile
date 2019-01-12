@@ -1,0 +1,58 @@
+pipeline {
+	// 所有机器
+    agent any
+
+	environment {
+		PATH="/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin"
+	}
+
+	parameters {
+		choice(
+			choices: 'dev\nprod',
+			description: '请选择你要部署的环境',
+			name: 'deploy_env'
+		)
+		string (name: 'branch', defaultValue: 'master', description: '需要部署的分支名称')
+	}
+
+
+    stages {
+        stage('Pull deploy code') {
+            steps {
+				sh 'git config --global http.sslVerify false'
+				dir ("${env.WORKSPACE}"){
+					git branch: '$branch', credentialsId: '69d456d5-9dc9-475a-b5e5-325acd530197', url: 'https://github.com/YxMall/yx-platform_front.git'
+				}
+            }
+        }
+
+		stage('build deploy code') {
+            steps {
+				dir ("${env.WORKSPACE}"){
+					sh 'node -v'
+					sh 'npm -v'
+					sh 'npm i'
+					sh 'npm run build'
+				}
+            }
+        }
+
+ 		stage('Pull deploy ansible script') {
+            steps {
+				sh 'git config --global http.sslVerify false'
+				dir (path:"../yxmall_deploy"){
+					git branch: 'master', credentialsId: '69d456d5-9dc9-475a-b5e5-325acd530197', url: 'https://github.com/wangyajungithub/yxmail_deploy.git'
+				}
+            }
+        }
+
+		stage('ansible deploy service') {
+            steps {
+				dir (path:"../yxmall_deploy/yx-platform_front/playbooks"){
+					 sh 'ansible --version'
+				     sh 'ansible-playbook -i   inventory/$deploy_env ./deploy.yml'
+				}
+			  }
+        }
+    }
+}
