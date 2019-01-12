@@ -28,10 +28,7 @@ pipeline {
 
 		stage('build deploy code') {
             steps {
-                sh 'git config --global http.sslVerify false'
 				dir ("${env.WORKSPACE}"){
-				    sh 'cd /root/yx-platform_front'
-				    sh 'git clone https://github.com/YxMall/yx-platform_front.git'
 					sh 'node -V'
 					sh 'npm -V'
 					sh 'npm i'
