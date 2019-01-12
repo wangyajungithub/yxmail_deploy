@@ -28,12 +28,13 @@ pipeline {
 
 		stage('build deploy code') {
             steps {
-
+            dir ("${env.WORKSPACE}"){
 					sh 'node -V'
 					sh 'npm -V'
 					sh 'npm i'
 					sh 'npm run build'
             }
+          ｝
         }
 
  		stage('Pull deploy ansible script') {
