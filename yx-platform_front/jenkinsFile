@@ -50,7 +50,7 @@ pipeline {
             steps {
 				dir (path:"../yxmall_deploy/${JOB_NAME}/playbooks"){
 					 sh 'ansible --version'
-				     sh 'ansible-playbook -i   inventory/$deploy_env ./deploy.yml  -e pwd=${WORKSPACE}'
+				     sh 'ansible-playbook -i inventory/$deploy_env ./deploy.yml'
 				}
 			  }
         }
