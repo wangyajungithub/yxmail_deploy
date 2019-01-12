@@ -48,9 +48,9 @@ pipeline {
 
 		stage('ansible deploy service') {
             steps {
-				dir (path:"../yxmall_deploy/yx-platform_front/playbooks"){
+				dir (path:"../yxmall_deploy/${JOB_NAME}/playbooks"){
 					 sh 'ansible --version'
-				     sh 'ansible-playbook -i   inventory/$deploy_env ./deploy.yml'
+				     sh 'ansible-playbook -i   inventory/$deploy_env ./deploy.yml  -e pwd=${WORKSPACE}'
 				}
 			  }
         }
