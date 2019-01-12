@@ -28,12 +28,11 @@ pipeline {
 
 		stage('build deploy code') {
             steps {
-				dir ("${env.WORKSPACE}"){
-					sh 'node -v'
-					sh 'npm -v'
+
+					sh 'node -V'
+					sh 'npm -V'
 					sh 'npm i'
 					sh 'npm run build'
-				}
             }
         }
 
