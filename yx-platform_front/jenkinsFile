@@ -28,7 +28,7 @@ pipeline {
 
 		stage('build deploy code') {
             steps {
-				dir (path:"../usr/local/node/bin"){
+				dir ("${env.WORKSPACE}"){
 					sh 'node -v'
 					sh 'npm -v'
 					sh 'npm i'
