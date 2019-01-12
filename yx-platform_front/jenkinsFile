@@ -28,7 +28,7 @@ pipeline {
 
 		stage('build deploy code') {
             steps {
-				dir (path:"/var/lib/jenkins/workspace/yx-platform_front"){
+				dir (path:"/usr/local/node/bin"){
 					sh 'node -V'
 					sh 'npm -V'
 					sh 'npm i'
