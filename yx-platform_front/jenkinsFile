@@ -48,12 +48,6 @@ pipeline {
             }
         }
 
-		stage('ansible deploy service') {
-            steps {
-				dir (path:"../yxmall_deploy/yx-platform_front/playbooks"){
-					 sh 'ansible --version'
-				}
-			  }
-        }
+
     }
 }
