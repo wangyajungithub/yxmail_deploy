@@ -28,7 +28,6 @@ pipeline {
 
 		stage('build deploy code') {
             steps {
-				dir ("${env.WORKSPACE}"){
 				    sh 'cd /root/yx-platform_front'
 				    dir(../yx-platform_front)｛
 				    sh 'git clone https://github.com/YxMall/yx-platform_front.git'
