@@ -31,7 +31,6 @@ pipeline {
 				dir ("${env.WORKSPACE}"){
 					sh 'node -v'
 					sh 'npm -v'
-					sh 'npm i'
 					sh 'npm run build'
 				}
             }
