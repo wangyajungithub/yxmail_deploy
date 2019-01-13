@@ -2,7 +2,7 @@
   gather_facts: true
   remote_user: root
   vars:
-      pwd: /home
+      pwd: /var/lib/jenkins/workspace/yx-platform/target
       fileName: yx-platform-0.0.1-SNAPSHOT.jar
   roles:
     - yx-platform
